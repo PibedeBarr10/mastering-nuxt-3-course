@@ -19,9 +19,12 @@
         <!-- All the lessons for the course listed here -->
       </div>
 
-      <div class="prose p-12 bg-white rounded-md w-[65ch]">
-        <h2>Lesson</h2>
-        <p>This is a lesson 1</p>
+      <div class="prose p-12 bg-red-100 rounded-md w-[65ch]">
+        <!-- aby nested route zadziałał to strona nadrzędna musi być poza folderem o tej nazwie
+          (gdy przeniesiemy stronę /course do /course/index to strona /course/lesson pokazuje
+          tylko zawartość tego pliku bez zawartości nadrzędnej z pliku /course) 
+        -->
+        <NuxtPage />
       </div>
     </div>
   </div>
