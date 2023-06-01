@@ -11,7 +11,7 @@ export default {
                     slug: '1-introduction-to-typescript',
                     number: 1,
                     downloadUrl: '',
-                    videoId: 11,
+                    videoId: 684236333,
                     text: `
                         Abc 1
                         Def 1
@@ -33,7 +33,7 @@ export default {
                     slug: '3-chapter-summary',
                     number: 3,
                     downloadUrl: '',
-                    videoId: 13,
+                    videoId: 686921522,
                     text: `
                         Abc 1
                         Def 3
