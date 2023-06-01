@@ -18,7 +18,7 @@
                     <div></div>
                 </div>
     
-                <div class="p-8 bg-red-100 rounded-md col-span-4 md:col-span-3">
+                <div class="p-8 bg-white rounded-md col-span-4 md:col-span-3">
                     <NuxtPage />
                 </div>
             </div>
