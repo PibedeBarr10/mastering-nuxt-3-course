@@ -12,7 +12,7 @@
     
             <div class="w-full grid grid-cols-4 gap-4">
                 <div class="md:mr-4 p-8 bg-white rounded-md col-span-4 md:col-span-1">
-                    <h3 class="font-bold mb-4">
+                    <h3 class="text-lg font-bold mb-4">
                         Chapters
                     </h3>
                     <div
@@ -20,11 +20,11 @@
                         :key="chapter.slug"
                         class="mb-2 flex flex-col"
                     >
-                        <h4>{{ chapter.title }}</h4>
+                        <h4 class="font-bold">{{ chapter.title }}</h4>
                         <NuxtLink
                             v-for="(lesson, index) in chapter.lessons"
                             :key="lesson.slug"
-                            :to="`/course/chapter/${chapter.slug}/lesson/${lesson.slug}`"
+                            :to="lesson.path"
                             class="flex flex-row space-x-1 no-underline prose-sm font-normal"
                         >
                             <span class="text-gray-500">
@@ -46,3 +46,9 @@
 <script lang="ts" setup>
 const { chapters } = useCourse()
 </script>
+
+<style scoped>
+.router-link-active {
+    @apply text-blue-500 font-bold;
+}
+</style>

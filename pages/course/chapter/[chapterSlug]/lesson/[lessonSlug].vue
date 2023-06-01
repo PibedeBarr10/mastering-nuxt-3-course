@@ -7,20 +7,20 @@
             {{ lesson.title }}
         </h2>
         <div class="flex space-x-4 mt-2 mb-8">
-            <a
+            <NuxtLink
                 v-if="lesson.sourceUrl"
-                :href="lesson.sourceUrl"
+                :to="lesson.sourceUrl"
                 class="font-normal text-md text-gray-500"
             >
                 Download Source Code
-            </a>
-            <a
+            </NuxtLink>
+            <NuxtLink
                 v-if="lesson.downloadUrl"
-                :href="lesson.downloadUrl"
+                :to="lesson.downloadUrl"
                 class="font-normal text-md text-gray-500"
             >
                 Download Video
-            </a>
+            </NuxtLink>
         </div>
         <VideoPlayer
             v-if="lesson.videoId"
