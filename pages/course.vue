@@ -18,13 +18,8 @@
                     <div></div>
                 </div>
     
-                <div class="p-8 bg-white rounded-md col-span-4 md:col-span-3">
-                    <h2>
-                        Lesson
-                    </h2>
-                    <p>
-                        This is a lesson
-                    </p>
+                <div class="p-8 bg-red-100 rounded-md col-span-4 md:col-span-3">
+                    <NuxtPage />
                 </div>
             </div>
         </div>
