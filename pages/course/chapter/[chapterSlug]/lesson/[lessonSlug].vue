@@ -29,10 +29,12 @@
         <p class="mb-6">
             {{ lesson.text }}
         </p>
-        <LessonCompleteButton
-            :model-value="isLessonComplete"
-            @update:model-value="toggleComplete()"
-        />
+        <!-- <ClientOnly> -->
+            <LessonCompleteButton
+                :model-value="isLessonComplete"
+                @update:model-value="toggleComplete()"
+            />
+        <!-- </ClientOnly> -->
     </div>
 </template>
 
@@ -57,9 +59,7 @@ useHead({
     title
 })
 
-const progress = useState('progress', () => {
-    return []
-})
+const progress = useLocalStorage('progress', [])
 
 const isLessonComplete = computed(() => {
     if (
