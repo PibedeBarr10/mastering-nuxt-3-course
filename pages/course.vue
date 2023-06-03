@@ -58,6 +58,11 @@
 
 <script lang="ts" setup>
 const { chapters } = useCourse()
+
+const resetError = async (error) => {
+    await navigateTo('/course/chapter/1-chapter-1/lesson/1-introduction-to-typescript')
+    error.value = null
+}
 </script>
 
 <style scoped>
