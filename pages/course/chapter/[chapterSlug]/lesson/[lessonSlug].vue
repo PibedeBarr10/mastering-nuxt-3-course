@@ -29,12 +29,10 @@
         <p class="mb-6">
             {{ lesson.text }}
         </p>
-        <!-- <ClientOnly> -->
-            <LessonCompleteButton
-                :model-value="isLessonComplete"
-                @update:model-value="toggleComplete()"
-            />
-        <!-- </ClientOnly> -->
+        <LessonCompleteButton
+            :model-value="isLessonComplete"
+            @update:model-value="toggleComplete()"
+        />
     </div>
 </template>
 

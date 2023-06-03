@@ -34,7 +34,24 @@
         </div>
 
         <div class="p-8 bg-white rounded-md col-span-4 md:col-span-3">
-            <NuxtPage />
+            <NuxtErrorBoundary>
+                <NuxtPage />
+                <template #error="{ error }">
+                    <p>
+                        Oh no, something went wrong with the lesson!
+                        <br />
+                        <code>{{ error }}</code>
+                    </p>
+                    <div>
+                        <button
+                            class="hover:cursor-pointer bg-gray-500 text-white font-bold rounded-sm px-4 py-2"
+                            @click="resetError(error)"
+                        >
+                            Reset
+                        </button>
+                    </div>
+                </template>
+            </NuxtErrorBoundary>
         </div>
     </div>
 </template>

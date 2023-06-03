@@ -8,6 +8,7 @@ type TLesson = {
     videoId: number
     text: string
     sourceUrl?: string
+    path: string
 }
 
 type TChapter = {
@@ -24,7 +25,7 @@ type TCourse = {
 
 export const useCourse = (): TCourse => {
     const chapters: TChapter[] = courseData.chapters.map((chapter) => {
-        const lessons: TLesson[] = chapter.lessons.map((lesson: TLesson) => ({
+        const lessons: TLesson[] = chapter.lessons.map((lesson) => ({
             ...lesson,
             path: `/course/chapter/${chapter.slug}/lesson/${lesson.slug}`
         }))
