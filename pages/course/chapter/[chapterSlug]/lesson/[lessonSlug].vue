@@ -38,7 +38,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 const course = useCourse()
 const route = useRoute()
 
