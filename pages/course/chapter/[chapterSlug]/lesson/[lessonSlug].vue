@@ -41,7 +41,7 @@ const course = useCourse()
 const route = useRoute()
 
 definePageMeta({
-    middleware: function ({ params }, from) {
+    middleware: [function ({ params }, from) {
         const course = useCourse()
 
         const chapter = course.chapters.find(chapter => chapter.slug === params.chapterSlug)
@@ -63,8 +63,9 @@ definePageMeta({
                 })
             )
         }
-    }
-})
+    },
+    'auth'
+]})
 
 const chapter = computed(() => {
     return course.chapters.find(
