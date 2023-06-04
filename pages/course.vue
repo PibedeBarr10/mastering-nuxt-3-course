@@ -1,12 +1,13 @@
 <template>
     <div>
-        <div class="mb-12">
-            <h1 class="text-center font-medium">
+        <div class="flex justify-between items-center w-full mb-12">
+            <h1 class="font-medium">
                 Course:
                 <span class="font-bold">
                     {{ title }}
                 </span>
             </h1>
+            <UserCard />
         </div>
     
         <div class="w-full grid grid-cols-4 gap-4">
