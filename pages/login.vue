@@ -15,10 +15,10 @@
 <script setup lang="ts">
 const { title } = useCourse()
 
-const supabase = useSupabaseClient()
+const { auth } = useSupabaseClient()
 
 const login = async () => {
-    const { error } = await supabase.auth.signInWithOAuth({
+    const { error } = await auth.signInWithOAuth({
         provider: 'github'
     })
 

@@ -11,7 +11,10 @@
             <div class="font-medium">
                 {{ name }}
             </div>
-            <button class="text-sm underline text-slate-500">
+            <button
+                class="text-sm underline text-slate-500"
+                @click="logout()"
+            >
                 Log out
             </button>
         </div>
@@ -20,7 +23,30 @@
 
 <script setup lang="ts">
 const user = useSupabaseUser()
+const { auth } = useSupabaseClient()
 
-const name = computed(() => user?.value.user_metadata.full_name)
-const profile = computed(() => user?.value.user_metadata.avatar_url)
+const logout = async () => {
+    const { error } = await auth.signOut()
+
+    if (error) {
+        console.error(error)
+    }
+
+    // The Nuxt Supabase auth *should* be doing this
+    // for us, but it isn't for some reason.
+    // try {
+    //     await $fetch('/api/_supabase/session', {
+    //         method: 'POST',
+    //         body: { event: 'SIGNED_OUT', session: null },
+    //     })
+    //     user.value = null;
+    // } catch (e) {
+    //     console.error(error)
+    // }
+
+    await navigateTo('/login')
+}
+
+const name = computed(() => user.value?.user_metadata.full_name)
+const profile = computed(() => user.value?.user_metadata.avatar_url)
 </script>
