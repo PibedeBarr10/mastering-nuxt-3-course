@@ -1,7 +1,7 @@
 <template>
-    <div>
+    <div v-if="lesson">
         <p class="mt-0 uppercase font-bold text-slate-400 mb-1">
-            Lesson {{ chapter.number }} - {{ lesson.number }}
+            Lesson {{ chapter?.number }} - {{ lesson.number }}
         </p>
         <h2 class="font-bold text-lg my-0">
             {{ lesson.title }}
@@ -73,12 +73,12 @@ const chapter = computed(() => {
 })
 
 const lesson = computed(() => {
-    return chapter.value.lessons.find(
+    return chapter.value?.lessons.find(
         (lesson) => lesson.slug === route.params.lessonSlug)
 })
 
 const title = computed(() => {
-    return `${lesson.value.title} - ${course.title}`
+    return `${lesson.value?.title} - ${course.title}`
 })
 useHead({
     title
