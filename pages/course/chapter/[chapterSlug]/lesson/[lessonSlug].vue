@@ -37,8 +37,13 @@
 </template>
 
 <script setup lang="ts">
+import useLesson from '~/composables/useLesson';
+
 const course = useCourse()
 const route = useRoute()
+
+const { chapterSlug, lessonSlug } = route.params
+const lesson = await useLesson(chapterSlug, lessonSlug)
 
 definePageMeta({
     middleware: [function ({ params }, from) {
@@ -72,10 +77,6 @@ const chapter = computed(() => {
         (chapter) => chapter.slug === route.params.chapterSlug)
 })
 
-const lesson = computed(() => {
-    return chapter.value?.lessons.find(
-        (lesson) => lesson.slug === route.params.lessonSlug)
-})
 
 const title = computed(() => {
     return `${lesson.value?.title} - ${course.title}`
