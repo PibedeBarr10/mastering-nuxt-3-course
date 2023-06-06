@@ -1,9 +1,12 @@
+import { TCourse, TChapter, TLesson, TLessonWithPath } from '~/types/course'
 import course from '~/server/courseData'
 
-export default defineEventHandler((event) => {
+course as TCourse
+
+export default defineEventHandler((event): TLessonWithPath => {
     const { chapterSlug, lessonSlug } = event.context.params
 
-    const chapter = course.chapters.find(chapter => chapter.slug === chapterSlug)
+    const chapter: Maybe<TChapter> = course.chapters.find((chapter: TChapter) => chapter.slug === chapterSlug)
     if (!chapter) {
         return createError({
             statusCode: 404,
@@ -11,7 +14,7 @@ export default defineEventHandler((event) => {
         })
     }
 
-    const lesson = chapter.lessons.find(lesson => lesson.slug === lessonSlug)
+    const lesson: Maybe<TLesson> = chapter.lessons.find((lesson: TLesson) => lesson.slug === lessonSlug)
     if (!lesson) {
         return createError({
             statusCode: 404,
@@ -19,5 +22,8 @@ export default defineEventHandler((event) => {
         })
     }
 
-    return lesson
+    return {
+        ...lesson,
+        path: `/course/chapter/${chapterSlug}/lesson/${lessonSlug}`
+    }
 })

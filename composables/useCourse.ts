@@ -1,31 +1,9 @@
+import { TCourse, TChapter, TLesson, TLessonWithPath } from '~/types/course'
 import courseData from '../data/courseData'
 
-type TLesson = {
-    title: string
-    slug: string
-    number: number
-    downloadUrl: string
-    videoId: number
-    text: string
-    sourceUrl?: string
-    path: string
-}
-
-type TChapter = {
-    title: string
-    slug: string
-    number: number
-    lessons: TLesson[]
-}
-
-type TCourse = {
-    title: string
-    chapters: TChapter[]
-}
-
 export const useCourse = (): TCourse => {
-    const chapters: TChapter[] = courseData.chapters.map((chapter) => {
-        const lessons: TLesson[] = chapter.lessons.map((lesson) => ({
+    const chapters: TChapter[] = courseData.chapters.map((chapter: TChapter) => {
+        const lessons: TLessonWithPath[] = chapter.lessons.map((lesson: TLesson) => ({
             ...lesson,
             path: `/course/chapter/${chapter.slug}/lesson/${lesson.slug}`
         }))
