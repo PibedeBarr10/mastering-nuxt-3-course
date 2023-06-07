@@ -14,6 +14,6 @@ definePageMeta({
     layout: false
 })
 
-const firstLesson = useFirstLesson()
+const firstLesson = await useFirstLesson()
 
 </script>

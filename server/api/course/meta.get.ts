@@ -1,26 +1,14 @@
-import { TCourse, TChapter, TLesson } from '~/types/course'
+import {
+    TCourse,
+    TChapter,
+    TLesson,
+    TCourseMeta,
+    TOutlineChapter,
+    TOutlineLesson
+} from '~/types/course'
 import course from '~/server/courseData'
 
 course as TCourse
-
-type TCourseMeta = {
-    title: string,
-    chapters: TOutlineChapter[]
-}
-
-type TOutlineBase = {
-    title: string
-    slug: string
-    number: number
-}
-
-type TOutlineChapter = TOutlineBase & {
-    lessons: TOutlineLesson[]
-}
-
-type TOutlineLesson = TOutlineBase & {
-    path: string
-}
 
 export default defineEventHandler((event): TCourseMeta => {
     const outline: TOutlineChapter[] = course.chapters.reduce(

@@ -4,7 +4,7 @@
             <h1 class="font-medium">
                 Course:
                 <span class="font-bold">
-                    {{ title }}
+                    {{ course.title }}
                 </span>
             </h1>
             <UserCard />
@@ -16,7 +16,7 @@
                     Chapters
                 </h3>
                 <div
-                    v-for="chapter in chapters"
+                    v-for="chapter in course.chapters"
                     :key="chapter.slug"
                     class="mb-2 flex flex-col"
                 >
@@ -60,10 +60,12 @@
 </template>
 
 <script lang="ts" setup>
-const { title, chapters } = useCourse()
+// tutaj nie będzie pobierane 2 razy to samo dzięki cache'owaniu przez composable'a `useFetchWithCache`
+const course = await useCourse()
+const firstLesson = await useFirstLesson()
 
 const resetError = async (error) => {
-    await navigateTo('/course/chapter/1-chapter-1/lesson/1-introduction-to-typescript')
+    await navigateTo(firstLesson.path)
     error.value = null
 }
 </script>
