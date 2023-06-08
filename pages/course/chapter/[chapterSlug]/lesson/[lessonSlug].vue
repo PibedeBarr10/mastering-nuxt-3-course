@@ -37,8 +37,6 @@
 </template>
 
 <script setup lang="ts">
-import useLesson from '~/composables/useLesson';
-
 const course = await useCourse()
 const route = useRoute()
 

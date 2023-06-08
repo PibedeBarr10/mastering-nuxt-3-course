@@ -1,4 +1,4 @@
-import { TCourseMeta } from '~/types/course'
+import { TCourseOutline } from '~/server/api/course/meta.get'
 
 // fetching metadata
-export default async () => useFetchWithCache<TCourseMeta>('/api/course/meta')
+export default async () => await useFetchWithCache<TCourseOutline>('/api/course/meta')
