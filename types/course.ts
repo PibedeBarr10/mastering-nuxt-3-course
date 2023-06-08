@@ -1,12 +1,4 @@
-export type TLesson = {
-    title: string
-    slug: string
-    number: number
-    downloadUrl: string
-    videoId: number
-    text: string
-    sourceUrl?: string
-}
+import { Lesson as TLesson } from '@prisma/client'
 
 export type TLessonWithPath = TLesson & {
     path: string

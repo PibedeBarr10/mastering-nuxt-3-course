@@ -1,5 +1,4 @@
 import { TLessonWithPath } from '~/types/course'
-import useFetchWithCache from './useFetchWithCache'
 
 export default async (
     chapterSlug: string,
