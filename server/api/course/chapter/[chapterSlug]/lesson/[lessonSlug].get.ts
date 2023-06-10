@@ -1,9 +1,14 @@
 import { PrismaClient } from '@prisma/client'
+import protectRoute from '../../../../../utils/protectRoute'
 
 const prisma = new PrismaClient()
 
 export default defineEventHandler(async (event) => {
     const { chapterSlug, lessonSlug } = event.context.params
+    // We allow users to access the first chapter without being logged in
+    if (chapterSlug !== '1-chapter-1') {
+        protectRoute(event)
+    }
 
     const lesson = await prisma.lesson.findFirst({
         where: {
