@@ -5,3 +5,11 @@ import {
 export type TLessonWithPath = TLesson & {
     path: string
 }
+
+export type TChapterProgress = {
+    [key: string]: boolean
+}
+  
+export type TCourseProgress = {
+    [key: string]: TChapterProgress
+}
