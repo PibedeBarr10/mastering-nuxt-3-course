@@ -3,9 +3,9 @@ import { defineStore } from 'pinia'
 export const useCourseProgress = defineStore(
     'courseProgress',
     () => {
-        // Initialize progress from local storage
-        const progress = useLocalStorage('progress', {})
-        const initialized = ref(false)
+        // Initialize progress
+        const progress = ref<any>({})
+        const initialized = ref<boolean>(false)
 
         async function initialize() {
             // If the course has already been initialized, return
@@ -27,8 +27,8 @@ export const useCourseProgress = defineStore(
             // Grab chapter and lesson slugs from the route if they're not provided
             if (!chapter || !lesson) {
                 const { params: { chapterSlug, lessonSlug } } = useRoute()
-                chapter = chapterSlug as string;
-                lesson = lessonSlug as string;
+                chapter = chapterSlug as string
+                lesson = lessonSlug as string
             }
 
             // Get the current progress for the lesson
@@ -40,7 +40,24 @@ export const useCourseProgress = defineStore(
                 [lesson]: !currentProgress
             }
 
-        // TODO: Update in DB (lesson 6-4)
+            // Update the progress in the DB
+            try {
+                await $fetch(`/api/course/chapter/${chapter}/lesson/${lesson}/progress`, {
+                    method: 'POST',
+                    // Automatically stringified by ofetch
+                    body: {
+                        completed: !currentProgress
+                    }
+                })
+            } catch (error) {
+                console.error(error)
+
+                // If the request failed, revert the progress value
+                progress.value[chapter] = {
+                    ...progress.value[chapter],
+                    [lesson]: currentProgress
+                }
+            }
         }
 
         return {
