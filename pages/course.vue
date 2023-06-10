@@ -9,18 +9,26 @@
             </h1>
             <UserCard />
         </div>
-    
+
         <div class="w-full grid grid-cols-4 gap-4">
             <div class="md:mr-4 p-8 bg-white rounded-md col-span-4 md:col-span-1">
                 <h3 class="text-lg font-bold mb-4">
                     Chapters
                 </h3>
                 <div
-                    v-for="chapter in course.chapters"
+                    v-for="(chapter, index) in course.chapters"
                     :key="chapter.slug"
                     class="mb-2 flex flex-col"
                 >
-                    <h4 class="font-bold">{{ chapter.title }}</h4>
+                    <h4 class="font-bold">
+                        {{ chapter.title }}
+                        <span
+                            v-if="percentageCompleted && user"
+                            class="text-emerald-500 text-sm"
+                        >
+                            {{ percentageCompleted.chapters[index] }}%
+                        </span>
+                    </h4>
                     <NuxtLink
                         v-for="(lesson, index) in chapter.lessons"
                         :key="lesson.slug"
@@ -33,8 +41,16 @@
                         <span>{{ lesson.title }}</span>
                     </NuxtLink>
                 </div>
+
+                <div
+                    v-if="percentageCompleted && user"
+                    class="mt-8 text-sm font-medium text-gray-500 flex justify-between items-center"
+                >
+                    Course completion:
+                    <span> {{ percentageCompleted.course }}% </span>
+                </div>
             </div>
-    
+
             <div class="p-8 bg-white rounded-md col-span-4 md:col-span-3">
                 <NuxtErrorBoundary>
                     <NuxtPage />
@@ -60,9 +76,19 @@
 </template>
 
 <script lang="ts" setup>
+import { useCourseProgress } from '~/stores/courseProgress'
+import { storeToRefs } from 'pinia'
+
+const user = useSupabaseUser()
+
 // tutaj nie będzie pobierane 2 razy to samo dzięki cache'owaniu przez composable'a `useFetchWithCache`
 const course = await useCourse()
 const firstLesson = await useFirstLesson()
+
+// Get chapter completion percentages
+const { percentageCompleted } = storeToRefs(
+    useCourseProgress()
+)
 
 const resetError = async (error) => {
     await navigateTo(firstLesson.path)
