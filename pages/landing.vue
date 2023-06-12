@@ -88,13 +88,12 @@ const learningOutcomes = [
     'How to use TypeScript with the Options API',
     'How to type reactive data, refs, props, custom events, event handlers, DOM elements, template refs, data from provide/inject, and more'
 ]
-
 const screenshots = [
-    'https://raw.githubusercontent.com/MasteringNuxt/mastering-nuxt-3/68704ffb991d68199c3d8eb8f0a978b601ea4a4f/public/images/screen1.png?token=GHSAT0AAAAAACDMJ63WWEI5OCA5KHRT2LCKZEHLBXA',
-    'https://raw.githubusercontent.com/MasteringNuxt/mastering-nuxt-3/68704ffb991d68199c3d8eb8f0a978b601ea4a4f/public/images/screen2.png?token=GHSAT0AAAAAACDMJ63XTZJTGUQA5OWCKL4CZEHLAXQ',
-    'https://raw.githubusercontent.com/MasteringNuxt/mastering-nuxt-3/68704ffb991d68199c3d8eb8f0a978b601ea4a4f/public/images/screen3.png?token=GHSAT0AAAAAACDMJ63WCVRXAE2IGV6TVKU6ZEHLB2Q',
-    'https://raw.githubusercontent.com/MasteringNuxt/mastering-nuxt-3/68704ffb991d68199c3d8eb8f0a978b601ea4a4f/public/images/screen4.png?token=GHSAT0AAAAAACDMJ63XUP6RKHDDIFDVEBQ6ZEHLB5Q',
-    'https://raw.githubusercontent.com/MasteringNuxt/mastering-nuxt-3/68704ffb991d68199c3d8eb8f0a978b601ea4a4f/public/images/screen5.png?token=GHSAT0AAAAAACDMJ63XF4ZJKYHBTDEO2NAEZEHLCBA'
+    '/images/screen1.png',
+    '/images/screen2.png',
+    '/images/screen3.png',
+    '/images/screen4.png',
+    '/images/screen5.png'
 ]
 
 definePageMeta({
